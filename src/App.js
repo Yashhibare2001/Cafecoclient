@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from './COMPONENT/Pages/Home'
+import Login from './COMPONENT/Auth/Login'
+import Register from './COMPONENT/Auth/Register'
+
+import QsrPage from './COMPONENT/Pages/QsrPage'
+import Cart from './COMPONENT/Pages/Cart'
+
+
+
+// import Navbar from './COMPONENT/Navbar/Navbar'
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      {/* <Navbar/> */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/qsr" element={<QsrPage/>} />
+        <Route path="/cart" element={<Cart/>} />
+        <Route path="/Login" element={<Login/>} />
+        <Route path="/Register" element={<Register/>} />
+        
+      </Routes>
+    </Router>
+  )
 }
 
-export default App;
+export default App

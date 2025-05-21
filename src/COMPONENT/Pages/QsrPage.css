@@ -1,0 +1,124 @@
+/* Page Layout */
+.qsr-page {
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f9fc;
+}
+
+/* Page Title */
+.qsr-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Grid Layout */
+.qsr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 0 10px;
+}
+
+/* Card Styling */
+.qsr-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  padding-bottom: 10px;
+}
+
+.qsr-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Images */
+.qsr-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+/* Headings */
+.qsr-card h3 {
+  font-size: 1.25rem;
+  margin: 15px;
+  color: #222;
+}
+
+/* Text Info */
+.qsr-card p {
+  margin: 5px 15px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Reviews List */
+.qsr-card ul {
+  list-style: none;
+  padding: 0 15px 10px;
+  margin: 10px 0 0;
+}
+
+
+
+/* Buttons */
+.view-btn,
+.back-btn {
+  display: inline-block;
+  margin: 15px;
+  padding: 10px 16px;
+  background-color: #007bff;
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.view-btn:hover,
+.back-btn:hover {
+  background-color: #0056b3;
+}
+
+.qsr-card ul {
+  padding: 0 15px 10px;
+  margin: 10px 0 0;
+  list-style-type: disc;
+  color: #444;
+  font-size: 0.9rem;
+}
+
+.qsr-navbar {
+   width: 100%;
+  max-width: 1400px;
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffffcc; /* slight transparency */
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.1);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.cart-icon {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.cart-page {
+  padding: 20px;
+}
