@@ -189,7 +189,7 @@ export default function Home() {
         <div className="footer-section">
           <h4>About Us</h4>
           <p>
-            CafeCo is your unified ordering and booking platform for seamless meal services.
+            CafeCo is your unified ordering and booking platform for seamless meal services with best deal.
           </p>
         </div>
 
