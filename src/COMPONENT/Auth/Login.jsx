@@ -82,7 +82,7 @@ const Login = () => {
               />
               <label htmlFor="remember" className="remember-label">Remember me</label>
             </div>
-            <a href="#" className="forgot-password">Forgot Password?</a>
+            <a href="/Register" className="forgot-password">Forgot Password?</a>
           </div>
 
           {/* Login Button */}

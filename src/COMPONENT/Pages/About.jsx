@@ -81,9 +81,9 @@ const About = () => {
         <div className="footer-section">
           <h4>Follow Us</h4>
           <div className="social-icons">
-            <a href="#"><i className="fab fa-facebook-f" /></a>
-            <a href="#"><i className="fab fa-twitter" /></a>
-            <a href="#"><i className="fab fa-instagram" /></a>
+            <a href="/"><i className="fab fa-facebook-f" /></a>
+            <a href="/About"><i className="fab fa-twitter" /></a>
+            <a href="/Order"><i className="fab fa-instagram" /></a>
           </div>
         </div>
       </footer>
