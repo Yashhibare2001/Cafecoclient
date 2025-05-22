@@ -189,7 +189,7 @@ export default function Home() {
         <div className="footer-section">
           <h4>About Us</h4>
           <p>
-            Corporate Cafeteria is your unified ordering and booking platform for seamless meal services.
+            CafeCo is your unified ordering and booking platform for seamless meal services.
           </p>
         </div>
 
@@ -206,7 +206,7 @@ export default function Home() {
         <div className="footer-section">
           <h4>Contact</h4>
           <ul>
-            <li>Email: support@corporatecafeteria.com</li>
+            <li>Email: support@CafeCo.com</li>
             <li>Phone: +1 234 567 8900</li>
             <li>Address: 123 Cafeteria St, Food City</li>
           </ul>
@@ -218,7 +218,7 @@ export default function Home() {
         </div>
 
         <div className="footer-section" style={{ flexBasis: '100%', marginTop: '1rem', textAlign: 'center' }}>
-          &copy; {new Date().getFullYear()} Corporate Cafeteria – Powered by QSR Booking Platform
+          &copy; {new Date().getFullYear()}CafeCo – Powered by QSR Booking Platform
         </div>
       </footer>
     </div>
