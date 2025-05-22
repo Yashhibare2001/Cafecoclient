@@ -18,29 +18,66 @@ export default function Home() {
   ];
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [categories, setCategories] = useState(categoriesData);
-  const [restaurants, setRestaurants] = useState([]);
+  const [categories] = useState(categoriesData);
+  const [restaurants] = useState([]);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
-  const handleSearch = () => {
-    if (searchTerm.trim() === '') return;
-    axios
-      .get(`https://cafecoserver.onrender.com/getRestaurantsByCity/${searchTerm}`)
-      .then((res) => setRestaurants(res.data.restaurantList))
-      .catch((err) => {
-        console.error(err);
-        setRestaurants([]);
-      });
-  };
+  // const handleSearch = () => {
+  //   if (searchTerm.trim() === '') return;
+  //   axios
+  //     .get(`https://cafecoserver.onrender.com/getRestaurantsByCity/${searchTerm}`)
+  //     .then((res) => setRestaurants(res.data.restaurantList))
+  //     .catch((err) => {
+  //       console.error(err);
+  //       setRestaurants([]);
+  //     });
+  // };
 
   const profileIcon = "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
   const navigate = useNavigate();
+
+ 
+
+  const handleSearch = async () => {
+    if (!searchTerm.trim()) return;
+
+    try {
+      const res = await axios.get('https://cafecoserver.onrender.com/restaurants');
+      const restaurants = res.data;
+
+      for (const rest of restaurants) {
+        const matchedDish = rest.dishes.find(d =>
+          d.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+        if (matchedDish) {
+          navigate('/qsr', {
+            state: {
+              city: rest.city,
+              restaurant: rest,
+              dish: matchedDish,
+            },
+          });
+          return;
+        }
+      }
+
+      alert('Dish not found!');
+    } catch (err) {
+      console.error('Search failed:', err);
+      alert('Error fetching dishes.');
+    }
+  };
 
 
   return (
     <div className="home-container">
       <nav className="navbar">
-        <div className="navbar-left">
+        <div
+          className="navbar-left"
+          style={{ cursor: 'pointer' }}
+          onClick={() => navigate('/')}
+        >
           <img
             src="../assests/food.jpg"
             alt="Corporate Cafeteria Logo"
@@ -112,15 +149,11 @@ export default function Home() {
             <div className="search-bar">
               <input
                 type="text"
-                placeholder="Search food categories..."
+                placeholder="Search food dishes..."
                 value={searchTerm}
                 onChange={(e) => {
                   setSearchTerm(e.target.value);
-                  const term = e.target.value.toLowerCase();
-                  const filtered = categoriesData.filter((cat) =>
-                    cat.name.toLowerCase().includes(term)
-                  );
-                  setCategories(filtered);
+                  
                 }}
                 className="search-input"
               />
