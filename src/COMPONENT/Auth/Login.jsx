@@ -66,7 +66,8 @@ const Login = () => {
               className="form-input"
             >
               <option>User</option>
-              <option>Doctor</option>
+              <option>Manager</option>
+              <option>Chef</option>
               <option>Admin</option>
             </select>
           </div>
