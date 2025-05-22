@@ -22,16 +22,7 @@ export default function Home() {
   const [restaurants] = useState([]);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
-  // const handleSearch = () => {
-  //   if (searchTerm.trim() === '') return;
-  //   axios
-  //     .get(`https://cafecoserver.onrender.com/getRestaurantsByCity/${searchTerm}`)
-  //     .then((res) => setRestaurants(res.data.restaurantList))
-  //     .catch((err) => {
-  //       console.error(err);
-  //       setRestaurants([]);
-  //     });
-  // };
+
 
   const profileIcon = "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
   const navigate = useNavigate();
