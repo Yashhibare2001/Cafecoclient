@@ -85,7 +85,7 @@ export default function QsrPage() {
   const [showCart, setShowCart] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:5400/restaurants')
+    axios.get('https://cafecoserver.onrender.com/restaurants')
       .then(res => setRestaurants(res.data))
       .catch(err => console.error('Error loading restaurant data:', err));
   }, []);

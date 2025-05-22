@@ -27,7 +27,7 @@ export default function Home() {
   const handleSearch = () => {
     if (searchTerm.trim() === '') return;
     axios
-      .get(`http://localhost:5400/getRestaurantsByCity/${searchTerm}`)
+      .get(`https://cafecoserver.onrender.com/getRestaurantsByCity/${searchTerm}`)
       .then((res) => setRestaurants(res.data.restaurantList))
       .catch((err) => {
         console.error(err);
