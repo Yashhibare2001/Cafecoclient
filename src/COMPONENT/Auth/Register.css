@@ -71,7 +71,7 @@
   border-color: #ff6f00;
 }
 
-/* Checkbox & Forgot Password (if needed) */
+/* Checkbox & Forgot Password */
 .remember-forgot-container {
   display: flex;
   justify-content: space-between;

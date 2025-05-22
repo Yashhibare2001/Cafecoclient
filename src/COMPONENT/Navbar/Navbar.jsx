@@ -1,22 +1,9 @@
 import { Link } from 'react-router-dom'
-import './Navbar.css'  // CSS file we'll create next
+import './Navbar.css'  
 
 export default function Navbar() {
   return (
-    // <nav className="navbar">
-    //   <div className="navbar-container">
-    //     <Link to="/" className="navbar-logo">
-    //       Corporate Cafeteria
-    //     </Link>
 
-    //     <div className="navbar-links">
-    //       <Link to="/qsr" className="navbar-link">QSR Order</Link>
-    //       <Link to="/booking" className="navbar-link">Pre-Meal Booking</Link>
-    //       <Link to="/about" className="navbar-link">About</Link>
-    //       <Link to="/contact" className="navbar-link">Contact</Link>
-    //     </div>
-    //   </div>
-    // </nav>
 
     <nav className="navbar">
             <div className="navbar-left">

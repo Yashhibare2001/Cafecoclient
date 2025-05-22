@@ -1,16 +1,16 @@
-
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import Cart from './Cart';
 import axios from 'axios';
-import './QsrPage.css';
+import { Link } from 'react-router-dom';
+import './Prebooking.css';
 
-export default function QsrPage() {
+export default function Prebooking() {
   const [restaurants, setRestaurants] = useState([]);
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
-  const [selectedDish, setSelectedDish] = useState(null);
   const [cart, setCart] = useState([]);
-  const navigate = useNavigate();
+  const [showCart, setShowCart] = useState(false);
+  const [selectedDish, setSelectedDish] = useState(null);
 
   useEffect(() => {
     axios.get('https://cafecoserver.onrender.com/restaurants')
@@ -28,15 +28,13 @@ export default function QsrPage() {
     setSelectedCity(city);
     setSelectedRestaurant(null);
     setSelectedDish(null);
+    setShowCart(false);
   };
 
   const handleRestaurantSelect = (restaurant) => {
     setSelectedRestaurant(restaurant);
     setSelectedDish(null);
-  };
-
-  const handleDishSelect = (dish) => {
-    setSelectedDish(dish);
+    setShowCart(false);
   };
 
   const goBack = () => {
@@ -47,6 +45,7 @@ export default function QsrPage() {
     } else {
       setSelectedCity(null);
     }
+    setShowCart(false);
   };
 
   const handleAddToCart = (dish) => {
@@ -68,11 +67,7 @@ export default function QsrPage() {
   };
 
   const updateQuantity = (id, newQty) => {
-    if (newQty < 1) {
-      removeItem(id);
-      return;
-    }
-
+    if (newQty < 1) return;
     setCart(prev =>
       prev.map(item =>
         item.id === id ? { ...item, quantity: newQty } : item
@@ -88,24 +83,29 @@ export default function QsrPage() {
 
   return (
     <div className="qsr-page">
-      {/* Navbar */}
       <nav className="qsr-navbar">
-        <Link to="/" className="navbar-left-link">
-          <div className="navbar-left">
-            <img
-              src="../assests/food.jpg"
-              alt="Corporate Cafeteria Logo"
-              className="navbar-logo"
-            />
-            <h1 className="navbar-title">Cafe Co</h1>
-          </div>
+        <Link to="/" className="navbar-left">
+          <img
+            src="../assests/food.jpg"
+            alt="Corporate Cafeteria Logo"
+            className="navbar-logo"
+          />
+          <h1 className="navbar-title">Cafe Co</h1>
         </Link>
-        <button className="cart-icon" onClick={() => navigate('/cart', { state: { cart } })}>
+        <button className="cart-icon" onClick={() => setShowCart(!showCart)}>
           🛒 {totalItems}
         </button>
       </nav>
 
-      {/* Main UI */}
+      {showCart && (
+        <Cart
+          cart={cart}
+          setShowCart={setShowCart}
+          updateQuantity={updateQuantity}
+          removeItem={removeItem}
+        />
+      )}
+
       {!selectedCity ? (
         <div className="qsr-grid">
           {Object.entries(cityMap).map(([city, cityRestaurants]) => (
@@ -132,9 +132,9 @@ export default function QsrPage() {
       ) : selectedDish ? (
         <>
           <button className="back-btn" onClick={goBack}>⬅ Back to Dishes</button>
-          <div className="dish-card-large">
-            <img src={selectedDish.image} alt={selectedDish.name} className="dish-image-large" />
-            <h2>{selectedDish.name}</h2>
+          <div className="qsr-card qsr-dish-detail">
+            <img src={selectedDish.image} alt={selectedDish.name} className="qsr-image" />
+            <h3>{selectedDish.name}</h3>
             <p><strong>Price:</strong> ₹{selectedDish.price}</p>
             <p><strong>Description:</strong> {selectedDish.description}</p>
             <p><strong>Ingredients:</strong></p>
@@ -144,11 +144,8 @@ export default function QsrPage() {
               ))}
             </ul>
             <div className="cart-controls">
-              <button onClick={() => updateQuantity(
-                selectedRestaurant.restaurant + '_' + selectedDish.name,
-                (cart.find(item => item.id === selectedRestaurant.restaurant + '_' + selectedDish.name)?.quantity || 1) - 1
-              )}>-</button>
-              <span role="img" aria-label="cart">🛒</span>
+              <button onClick={() => updateQuantity(selectedRestaurant.restaurant + '_' + selectedDish.name, (cart.find(item => item.id === selectedRestaurant.restaurant + '_' + selectedDish.name)?.quantity || 1) - 1)}>-</button>
+              <span>🛒 {cart.find(item => item.id === selectedRestaurant.restaurant + '_' + selectedDish.name)?.quantity || 0}</span>
               <button onClick={() => handleAddToCart(selectedDish)}>+</button>
             </div>
           </div>
@@ -163,13 +160,14 @@ export default function QsrPage() {
               const count = cart.find(item => item.id === dishId)?.quantity || 0;
 
               return (
-                <div key={index} className="qsr-card" onClick={() => handleDishSelect(dish)}>
+                <div key={index} className="qsr-card">
                   <img src={dish.image} alt={dish.name} className="qsr-image" />
                   <h3>{dish.name}</h3>
                   <p><strong>Price:</strong> ₹{dish.price}</p>
-                  <div className="cart-controls" onClick={(e) => e.stopPropagation()}>
+                  <p><strong>Description:</strong> {dish.description}</p>
+                  <div className="cart-controls">
                     <button onClick={() => updateQuantity(dishId, count - 1)}>-</button>
-                    <span role="img" aria-label="cart">🛒</span>
+                    <span>🛒 {count}</span>
                     <button onClick={() => handleAddToCart(dish)}>+</button>
                   </div>
                 </div>
@@ -178,7 +176,44 @@ export default function QsrPage() {
           </div>
         </>
       )}
+      
+      {/* Footer */}
+      <footer className="footer">
+        <div className="footer-section">
+          <h4>About Us</h4>
+          <p>
+            Corporate Cafeteria is your unified ordering and booking platform for seamless meal services.
+          </p>
+        </div>
+
+        <div className="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/qsr">QSR Order</Link></li>
+            <li><Link to="/booking">Pre-Meal Booking</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
+          </ul>
+        </div>
+
+        <div className="footer-section">
+          <h4>Contact</h4>
+          <ul>
+            <li>Email: support@corporatecafeteria.com</li>
+            <li>Phone: +1 234 567 8900</li>
+            <li>Address: 123 Cafeteria St, Food City</li>
+          </ul>
+          <div className="social-icons">
+            <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">🌐</a>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter">🐦</a>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">📸</a>
+          </div>
+        </div>
+
+        <div className="footer-section" style={{ flexBasis: '100%', marginTop: '1rem', textAlign: 'center' }}>
+          &copy; {new Date().getFullYear()} Corporate Cafeteria – Powered by QSR Booking Platform
+        </div>
+      </footer>
     </div>
   );
 }
-

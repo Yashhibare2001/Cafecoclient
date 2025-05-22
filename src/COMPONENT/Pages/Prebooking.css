@@ -16,15 +16,8 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-}
-
-.navbar-left-link {
   text-decoration: none;
   color: inherit;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  transition: color 0.3s ease;
 }
 
 .navbar-logo {
@@ -244,7 +237,7 @@ width: 100%;
 .footer-section h4 {
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #fbbf24;
+  color: #fbbf24; 
 }
 
 .footer-section ul {
@@ -293,7 +286,7 @@ width: 100%;
 
 @media (max-width: 640px) {
   .qsr-grid {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
   }
 
   .qsr-navbar {
@@ -302,6 +295,7 @@ width: 100%;
     text-align: center;
   }
 }
+
 
 /* Responsive */
 

@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffffcc; /* slight transparency */
+  background-color: #ffffffcc; 
   border-radius: 0.75rem;
   box-shadow: 0 2px 10px rgb(0 0 0 / 0.1);
   backdrop-filter: blur(10px);
@@ -25,13 +25,13 @@
   width: 50px;
   height: 50px;
   object-fit: contain;
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; /* half-moon shape */
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
 }
 
 .navbar-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #ea580c; /* orange */
+  color: #ea580c; 
   user-select: none;
 }
 

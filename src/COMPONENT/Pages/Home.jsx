@@ -1,13 +1,12 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+
+import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
 import food from '../assests/food.jpg';
 import pizzaImg from '../assests/categories/pizza.jpeg';
 import burgerImg from '../assests/categories/Burgger.jpeg';
 import indianImg from '../assests/categories/indian.jpeg';
-// import chineseImg from '../assests/categories/chinese.jpg';
 import dessertsImg from '../assests/categories/ice cream.jpg';
-// import beveragesImg from '../assests/categories/beverages.jpg';
 import axios from 'axios';
 
 export default function Home() {
@@ -15,14 +14,13 @@ export default function Home() {
     { id: 1, name: 'Pizza', image: pizzaImg },
     { id: 2, name: 'Burgers', image: burgerImg },
     { id: 3, name: 'Indian', image: indianImg },
-    // { id: 4, name: 'Chinese', image: chineseImg },
-    { id: 5, name: 'Desserts', image: dessertsImg },
-    // { id: 6, name: 'Beverages', image: beveragesImg },
+    { id: 5, name: 'Desserts', image: dessertsImg },  
   ];
 
   const [searchTerm, setSearchTerm] = useState('');
   const [categories, setCategories] = useState(categoriesData);
   const [restaurants, setRestaurants] = useState([]);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   const handleSearch = () => {
     if (searchTerm.trim() === '') return;
@@ -35,23 +33,51 @@ export default function Home() {
       });
   };
 
+  const profileIcon = "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
+  const navigate = useNavigate();
+
+
   return (
     <div className="home-container">
       <nav className="navbar">
         <div className="navbar-left">
-          <img 
-            src="../assests/food.jpg" 
-            alt="Corporate Cafeteria Logo" 
-            className="navbar-logo" 
+          <img
+            src="../assests/food.jpg"
+            alt="Corporate Cafeteria Logo"
+            className="navbar-logo"
           />
-          <h1 className="navbar-title">Corporate Cafeteria</h1>
+          <h1 className="navbar-title">Cafe Co</h1>
         </div>
+
         <ul className="navbar-links">
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/qsr">QSR Order</Link></li>
-          <li><Link to="/booking">Pre-Meal Booking</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
+          <li><Link to="/Order"> Order</Link></li>
+          <li><Link to="/Cart">Cart</Link></li>
+          <li><Link to="/About">About</Link></li>
         </ul>
+
+        <div className="profile-section">
+          <img
+            src={profileIcon}
+            alt="Profile"
+            className="profile-icon"
+            onClick={() => setShowProfileMenu(!showProfileMenu)}
+            style={{ cursor: 'pointer', width: '40px', borderRadius: '50%' }}
+          />
+          {showProfileMenu && (
+            <div className="profile-menu">
+              <Link to="/Dashboard" className="profile-link">Dashboard</Link>
+              <button onClick={() => {
+                alert('Logged out'); navigate('/login'); 
+              }}
+                className="profile-link"
+              >
+                Logout
+              </button>
+
+            </div>
+          )}
+        </div>
       </nav>
 
       <section className="hero-section">
@@ -70,18 +96,16 @@ export default function Home() {
             </p>
 
             <div className="buttons-container">
-              <Link to="/qsr" className="btn-qsr">🍔 QSR Order Now</Link>
+              <Link to="/qsr" className="btn-qsr">🍔 Get Order Now</Link>
+
 
               <button
-                onClick={() => {
-                  axios.get('http://localhost:5400/restaurants')
-                    .then(res => setRestaurants(res.data))
-                    .catch(err => console.error(err));
-                }}
+                onClick={() => navigate('/PreBookMeal')}
                 className="btn-booking"
               >
                 🕓 Pre-Meal Booking
               </button>
+
             </div>
 
             {/* ✅ Search Bar below buttons */}
@@ -193,7 +217,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="footer-section" style={{flexBasis: '100%', marginTop: '1rem', textAlign: 'center'}}>
+        <div className="footer-section" style={{ flexBasis: '100%', marginTop: '1rem', textAlign: 'center' }}>
           &copy; {new Date().getFullYear()} Corporate Cafeteria – Powered by QSR Booking Platform
         </div>
       </footer>

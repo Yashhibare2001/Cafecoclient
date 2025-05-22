@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './Login.css'; // Import CSS for styling
-import { Link, useNavigate } from 'react-router-dom'; // Import Link for navigation
+import './Login.css'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -8,11 +8,11 @@ const Login = () => {
   const [role, setRole] = useState('User');
   const [rememberMe, setRememberMe] = useState(false);
 
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate(); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/'); // Redirect to home page after login
+    navigate('/'); 
   };
 
   return (
@@ -94,7 +94,7 @@ const Login = () => {
         {/* Divider */}
         <div className="sign-up-container">
           <p className="sign-up-text">Don't have an account?</p>
-          {/* <a href="#" className="sign-up-link">Sign Up</a> */}
+         
           <Link to="/Register" className="sign-in-link">Sign In</Link>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Register.css';  // You can reuse the Login.css if you want the exact same styles
+import './Register.css';  
 import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
@@ -12,9 +12,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your registration logic here
-
-    // After registration, redirect to login or home page
+    
     navigate('/login');
   };
 
