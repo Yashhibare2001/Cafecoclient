@@ -30,7 +30,7 @@ export default function BookingConfirmation() {
 
     try {
       console.log("📦 Payload being sent:", payload);
-      const response = await axios.post('https://cafecoserver.onrender.com/employee/booking', payload);
+       axios.post('https://cafecoserver.onrender.com/employee/booking', payload);
       alert('✅ Booking data sent successfully.');
       navigate('/Payment');
     } catch (error) {
