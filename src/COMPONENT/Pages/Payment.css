@@ -33,8 +33,10 @@
 .payment-options {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  align-items: flex-start;
+  margin: 1rem auto;
+  width: max-content;
+  gap: 0.5rem;
 }
 
 .payment-option {
@@ -65,8 +67,11 @@
 
 /* QR Code Section */
 .qr-section {
-  text-align: center;
-  margin: 2rem 0 1rem;
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  display: inline-block;
+  border-radius: 10px;
 }
 
 .qr-code {
@@ -106,6 +111,16 @@
 .pay-button:hover {
   background-color: #c2410c;
   transform: scale(1.03);
+}
+
+.confirm-payment {
+  padding: 0.7rem 2rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 /* Responsive */

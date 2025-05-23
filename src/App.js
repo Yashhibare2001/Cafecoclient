@@ -11,7 +11,7 @@ import Prebooking from './COMPONENT/Pages/Prebooking'
 import About from './COMPONENT/Pages/About'
 import Payment from './COMPONENT/Pages/Payment'
 import Order from './COMPONENT/Pages/Order'
-
+import Bookingconfirmation from './COMPONENT/Pages/Bookingconfirmation'
 
 
 // import Navbar from './COMPONENT/Navbar/Navbar'
@@ -34,6 +34,7 @@ function App() {
         <Route path="/order" element={<Order/>} />
         <Route path="/Register" element={<Register/>} />
          <Route path="/Dashboard" element={<Dashboard/>} />
+        <Route path="/Bookingconfirmation" element={<Bookingconfirmation/>} />
         
       </Routes>
     </Router>
