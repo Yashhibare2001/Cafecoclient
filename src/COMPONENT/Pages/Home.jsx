@@ -364,7 +364,7 @@ export default function Home() {
           <div className="hero-text">
             <h2>Welcome! What would you like to do?</h2>
             <p>
-              Access food services quickly and conveniently. Choose to place an instant QSR order or schedule a meal in advance.
+              Access food service quickly and conveniently. Choose to place an instant QSR order or schedule a meal in advance.
             </p>
 
             <div className="buttons-container">
